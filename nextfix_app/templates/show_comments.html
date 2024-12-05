@@ -1,0 +1,43 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    <title>{{ show.title }} Comments</title>#}
+{##}
+{#</head>#}
+{#<body>#}
+{#    <h1>{{ show.title }} Comments</h1>#}
+{#    <p>{{ show.network }} - {{ show.release_date }} - {{ show.description }}</p>#}
+{##}
+{#    <!-- Form for adding a new comment -->#}
+{#    <form action="/shows/{{ show.id }}/comment" method="post">#}
+{#        <textarea name="comment" required></textarea>#}
+{#        <button type="submit">Add Comment</button>#}
+{#    </form>#}
+{##}
+{#    <ul>#}
+{#        {% for comment in comments %}#}
+{#            <li>#}
+{#                {{ comment.comment }} - {{ comment.first_name }} {{ comment.last_name }}#}
+{#                {% if 'user_id' in session %}#}
+{#                    {% if session['user_id'] == comment.user_id %}#}
+{#                        <form action="/shows/{{ show.id }}/comments/{{ comment.id }}/delete" method="post">#}
+{#                            <button type="submit">Delete</button>#}
+{#                        </form>#}
+{#                        <form action="/shows/{{ show.id }}/comments/{{ comment.id }}/edit" method="post">#}
+{#                            <textarea name="comment" required>{{ comment.comment }}</textarea>#}
+{#                            <button type="submit">Edit</button>#}
+{#                        </form>#}
+{#                    {% elif session['user_id'] != show.user_id %}#}
+{#                        <form action="/shows/{{ show.id }}/comments/{{ comment.id }}/delete" method="post">#}
+{#                            <button type="submit">Delete</button>#}
+{#                        </form>#}
+{#                        <!-- No edit option for comments not created by the current user -->#}
+{#                    {% endif %}#}
+{#                {% endif %}#}
+{#            </li>#}
+{#        {% endfor %}#}
+{#    </ul>#}
+{#</body>#}
+{#</html>#}

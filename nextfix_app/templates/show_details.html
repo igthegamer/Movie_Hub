@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ show.title }} Details</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='show_details.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h1 class="title"><a href="/dashboard">TV Shows</a></h1>
+        <a href="/logout" class="logout">Logout</a>
+    </div>
+
+    <div class="show-details-container">
+        <div class="card">
+            <h1 class="show-title">{{ show.title }}</h1>
+            <h2 class="subtitle">Recommended by {{ show.creator_first_name }}</h2>
+            <p><strong>Network:</strong> {{ show.network }}</p>
+            <p><strong>Release Date:</strong> {{ show.release_date }}</p>
+            <p><strong>Description:</strong> {{ show.description }}</p>
+        </div>
+    </div>
+
+    <hr>
+
+ {% if 'user_id' in session and session['user_id'] != show.creator_id %}
+    <div class="add-comment-container">
+        <form action="/shows/{{ show.id }}/comment" method="post" class="add-comment-form">
+            <textarea name="comment" required></textarea>
+            <button type="submit" class="add-comment-button">Add Comment</button>
+        </form>
+    </div>
+{% endif %}
+
+
+    <div class="comments-list-container">
+        <div class="comments-list">
+            {% for comment in comments %}
+                <div class="comment-item">
+                    <div class="comment-text">
+                        <span>{{ comment.comment }}</span> - {{ comment.first_name }} {{ comment.last_name }}
+                    </div>
+                    {% if 'user_id' in session and session['user_id'] == comment.user_id %}
+                        <form action="/shows/{{ show.id }}/comments/{{ comment.id }}/delete" method="post">
+                            <button type="submit" class="delete-comment-button">Delete</button>
+                        </form>
+                        <form action="/shows/{{ show.id }}/comments/{{ comment.id }}/edit" method="post">
+                            <textarea name="comment" required>{{ comment.comment }}</textarea>
+                            <button type="submit" class="edit-comment-button">Edit</button>
+                        </form>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>

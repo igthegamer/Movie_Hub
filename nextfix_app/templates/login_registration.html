@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Register</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Nextfix</h1>
+        <div class="form-container">
+            <div class="form">
+                <h2>Log in</h2>
+                <form action="/" method="post">
+                    <input type="email" name="email" placeholder="Email" required><br>
+                    <input type="password" name="password" placeholder="Password" required><br>
+                    <button type="submit" name="login_form">Login</button>
+                </form>
+            </div>
+            <div class="form">
+                <h2>Register</h2>
+                <form action="/" method="post" name="register_form">
+                    <input type="text" name="first_name" placeholder="First Name" required><br>
+                    <input type="text" name="last_name" placeholder="Last Name" required><br>
+                    <input type="email" name="email" placeholder="Email" required><br>
+                    <input type="password" name="password" placeholder="Password" required><br>
+                    <input type="password" name="confirm_password" placeholder="Confirm Password" required><br>
+                    <button type="submit" name="register_form">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var registerForm = document.querySelector('form[name="register_form"]');
+            if (registerForm) {
+                registerForm.onsubmit = function() {
+                    var firstName = document.querySelector('input[name="first_name"]').value.trim();
+                    if (firstName.length < 2) {
+                        alert('First name must be at least 2 characters');
+                        return false;
+                    }
+
+                    var lastName = document.querySelector('input[name="last_name"]').value.trim();
+                    if (lastName.length < 2) {
+                        alert('Last name must be at least 2 characters');
+                        return false;
+                    }
+
+                    var email = document.querySelector('input[name="email"]').value.trim();
+                    if (!isValidEmail(email)) {
+                        alert('Please enter a valid email address');
+                        return false;
+                    }
+
+                    var password = document.forms["register_form"]["password"].value;
+                    if (!isValidPassword(password)) {
+                        alert('Password must be at least 8 characters');
+                        return false;
+                    }
+
+                    var confirmPassword = document.forms["register_form"]["confirm_password"].value;
+                    if (!isPasswordMatch(password, confirmPassword)) {
+                        alert('Confirm password must match the password');
+                        return false;
+                    }
+
+
+                    return true;
+                };
+            } else {
+                console.error('Form element with name "register_form" not found.');
+            }
+
+
+        function isValidEmail() {
+                var email = document.forms["register_form"]["email"].value.trim();
+             var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                return emailRegex.test(email);
+                }
+        function isValidPassword(password) {
+            console.log('password', password);
+                return password.length >= 8;
+            }
+
+        function isPasswordMatch(password, confirmPassword) {
+
+                return password === confirmPassword;
+            }
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Your Nextfix</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome to Your Nextfix, {{ session.username }}</h1>
+        <div class="header-links">
+            <a href="/logout">Logout</a>
+            <a href="/shows/new">Create Show</a>
+        </div>
+    </div>
+
+    <h2 class="section-title">All TV Shows</h2>
+
+    <table class="shows-table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Network</th>
+                <th>Release Date</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for show in shows %}
+                <tr>
+                    <td><a href="/shows/{{ show.id }}" class="show-title">{{ show.title }}</a></td>
+                    <td>{{ show.network }}</td>
+                    <td>{{ show.release_date }}</td>
+                    <td>{{ show.description }}</td>
+                   <td class="actions">
+    {% if show.user_id == session.user_id %}
+        <div class="edit-delete-container">
+            <form action="/shows/{{ show.id }}/edit" method="get">
+                <button type="submit" class="edit-link">Edit</button>
+            </form>
+            <form action="/shows/{{ show.id }}/delete" method="post">
+                <button type="submit" class="delete-button">Delete</button>
+            </form>
+        </div>
+    {% else %}
+        <a href="/shows/{{ show.id }}" class="action-link">More</a>
+    {% endif %}
+</td>
+
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

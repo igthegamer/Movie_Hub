@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Show</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='show_details.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h1 class="title"><a href="/dashboard">TV Shows</a></h1>
+        <a href="/logout" class="logout">Logout</a>
+    </div>
+
+    <div class="show-details-container">
+        <h1 class="create-title">Recommend a New Show</h1>
+        <p class="recommendation-info">Please provide the details below to recommend a new show:</p>
+        <form action="/shows/new" method="post">
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" name="title" id="title" placeholder="Title" required>
+            </div>
+            <div class="form-group">
+                <label for="network">Network:</label>
+                <input type="text" name="network" id="network" placeholder="Network" required>
+            </div>
+            <div class="form-group">
+                <label for="release_date">Release Date:</label>
+                <input type="date" name="release_date" id="release_date" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Comment:</label>
+                <textarea name="description" id="description" placeholder="Description" required></textarea>
+            </div>
+            <button type="submit" class="add">Add</button>
+        </form>
+    </div>
+</body>
+</html>

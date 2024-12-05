@@ -1,0 +1,120 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.title {
+    color: blue;
+    text-decoration: underline;
+}
+
+.logout {
+    color: blue;
+    text-decoration: underline;
+}
+
+.show-details-container {
+    margin-top: 20px;
+    padding: 0 20px;
+}
+
+.card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.show-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.subtitle {
+    color: blue;
+    text-decoration: underline;
+}
+
+.comments-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.comment-item {
+    margin-bottom: 10px;
+    font-family: cursive;
+}
+
+.comment-text {
+    font-family: cursive;
+    color: #ea44ea
+}
+
+.delete-comment-button {
+    background-color: purple;
+}
+
+.edit-comment-button {
+    display: none;
+}
+
+.comment-item:hover .edit-comment-button {
+    display: inline-block;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+
+.recommendation-info {
+    color: red;
+}
+.add{
+    margin-right: 10px;
+    background-color: #41b603;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 5px 10px;
+    border: none;
+    left: 20%;
+    position: absolute;
+}
+.add:hover {
+    background-color: #2c7303;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+
+.create-title {
+    color: red;
+}
+
+.comments-list-container {
+    display: flex;
+    justify-content: center;
+}
+
+.comments-list {
+    max-width: 600px;
+    width: 100%;
+}
+
+.add-comment-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.add-comment-form {
+    width: 100%;
+    max-width: 600px;
+}
